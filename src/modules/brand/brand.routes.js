@@ -2,12 +2,13 @@ import { Router } from "express";
 import { validate } from "../../middleware/validate.js";
 import { addBrand, deleteBrand, getAllBrands, getBrand, updateBrand } from "./brand.controller.js";
 import { brandValidation } from './brand.validation.js';
+import { upload } from './../../fileUploade/fileUpload.js';
 
 
 const brandRouter = Router()
 
 // 1-Add brand 
-brandRouter.post('/', validate(brandValidation), addBrand)
+brandRouter.post('/', validate(brandValidation), upload.single('logo'), addBrand)
 
 // 2-Get all brands
 brandRouter.get('/', getAllBrands)

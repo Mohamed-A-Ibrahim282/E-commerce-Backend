@@ -1,11 +1,11 @@
-import { Schema, model } from "mongoose"
+import { Schema, Types, model } from "mongoose"
 
 const subcategorySchema = new Schema(
     {
-        name: { type: String, unique: true, require: true },
-        slug: String,
-        category: { type: Schema.Types.ObjectId, ref: 'Category', require: true },
-        createdBy: { type: Schema.Types.ObjectId, ref: 'User'},
+        name: { type: String,trim: true, unique: [true, "name must be unique"], required: [true, "name is require"] ,minLength: [2, "too short subcategory name"] },
+        slug: { type: String, lowercase: true, required: true },
+        category: { type: Types.ObjectId, ref: 'Category', required: true },
+        createdBy: { type: Types.ObjectId, ref: 'User'},
     },
     {
         versionKey: false,

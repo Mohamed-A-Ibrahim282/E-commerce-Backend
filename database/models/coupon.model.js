@@ -1,0 +1,18 @@
+import { model, Schema, Types } from "mongoose";
+
+const schema = new Schema(
+  {
+    code: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    expires: Date,
+    discount: Number,
+  },
+  { timestamps: true, versionKey: false }
+);
+
+export const Coupon = model("Coupon", schema);
+
+// task ====> aye copoun expire delete it from database
